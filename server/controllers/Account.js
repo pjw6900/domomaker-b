@@ -1,7 +1,6 @@
 const models = require('../models');
 
 const Account = models.Account;
-const Domo = models.Domo;
 
 const loginPage = (req, res) => {
   res.render('login');
