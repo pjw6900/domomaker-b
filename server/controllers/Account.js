@@ -3,11 +3,11 @@ const models = require('../models');
 const Account = models.Account;
 
 const loginPage = (req, res) => {
-  res.render('login');
+  res.render('login', { csrfToken: req.csrfToken() });
 };
 
 const signupPage = (req, res) => {
-  res.render('signup');
+  res.render('signup', { csrfToken: req.csrfToken() });
 };
 
 const logout = (req, res) => {
@@ -30,9 +30,9 @@ const login = (request, response) => {
     if (err || !account) {
       return res.status(401).json({ error: 'Wrong username or password' });
     }
-    
+
     req.session.account = Account.AccountModel.toAPI(account);
-    
+
     return res.json({ redirect: './maker' });
   });
 };
